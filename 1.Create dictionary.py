@@ -2,7 +2,7 @@ def create_dictionary(*args) -> dict:
     dictionary = {}
     number = 0
     for argument in args:
-        if not isinstance(argument, list):
+        if not isinstance(argument, (list, set, dict)):
             dictionary[argument] = number
         else:
             print(f"Cannot add {argument} to the dict!")
