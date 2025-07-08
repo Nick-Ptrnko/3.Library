@@ -1,4 +1,4 @@
-
+'''
 error = {
     "code": "E501",
     "filename": "./source_code_2.py",
@@ -8,7 +8,7 @@ error = {
     "physical_line": '    return f"I like to filter, rounding, doubling, '
                      "store and decorate numbers: {', '.join(items)}!\"",
 }
-
+'''
 def format_linter_error(error: dict) -> dict:
     return {
         "line": error.get("line_number"),
@@ -18,4 +18,4 @@ def format_linter_error(error: dict) -> dict:
         "source": "flake8"
     }
 
-print(format_linter_error(error=error))
+#print(format_linter_error(error=error))
