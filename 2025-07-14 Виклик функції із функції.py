@@ -10,8 +10,8 @@ def is_positive(number: int) -> None:
 def print_bye(number: int) -> None:
     print("Bye!")
 
-
-def numbers_handler(*numbers: list, before, action, after,) -> None:
+after = print_bye()
+def numbers_handler(numbers: list, before, action, after,) -> None:
     return numbers
 
 print(numbers_handler([1, -1, 0]))
