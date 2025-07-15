@@ -1,20 +1,33 @@
 def new_number(number: int) -> None:
-    number = 0
     print(f"Received a new number: {number}")
 
-
 def is_positive(number: int) -> None:
+    if number > 0:
+        print(f"{number} is a positive number")
+    elif number == 0:
+        print("Zero")
+    else:
+        print(f"{number} is a negative number")
     pass
-
 
 def print_bye(number: int) -> None:
     print("Bye!")
 
-after = print_bye()
-def numbers_handler(numbers: list, before, action, after,) -> None:
-    return numbers
 
-print(numbers_handler([1, -1, 0]))
+def numbers_handler(numbers: list, before=new_number, action=is_positive, after=print_bye,) -> None:
+    for number in numbers:
+        before(number)
+        action(number)
+        after(number)
+
+#numbers_handler([1, -1, 0])
+def print_hello(number):
+    print("Hello!")
+
+def some_action(number):
+    print("Action!")
+
+numbers_handler([10], action=some_action, before=print_hello)
 '''
 Реалізуй функцію numbers_handler, яка приймає список чисел numbers і три колбеки:
 
