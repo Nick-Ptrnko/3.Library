@@ -17,5 +17,5 @@ def format_linter_error(error: dict) -> dict:
         "name": error.get("code"),
         "source": "flake8"
     }
-
+# Перевірка працездатності функції окремо від решти
 #print(format_linter_error(error=error))
