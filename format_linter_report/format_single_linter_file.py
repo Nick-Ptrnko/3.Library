@@ -1,5 +1,4 @@
-# Головна функція з трьох. З неї йде виклик двох інших
-from format_linter_error import format_linter_error
+from .format_linter_error import format_linter_error
 errors = [
     {
         "code": "E501",

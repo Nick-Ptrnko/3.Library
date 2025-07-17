@@ -1,4 +1,4 @@
-from format_single_linter_file import format_single_linter_file
+from .format_single_linter_file import format_single_linter_file
 
 
 def format_linter_report(linter_report: dict) -> list:
