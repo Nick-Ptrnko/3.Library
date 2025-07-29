@@ -38,7 +38,7 @@ while True:
     selected_type = input("Ваш вибір (0-4): ")
 
     if selected_type == '0':
-        print("Дякую за використання гіда!")
+        print("Це все! Exit!")
         break
 
     if selected_type in type_handlers:
