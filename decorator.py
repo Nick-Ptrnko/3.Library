@@ -1,11 +1,12 @@
-def my_decorator(func):
-    def wrapper(): # це обгорнута функція (або обгортка)
-        print("Щось відбувається до виклику функції.")
-        func() # виклик оригінальної функції
-        print("Щось відбувається після виклику функції.")
-    return wrapper
+def decorate(func: callable):
+    def inner():
+        print("Decorate before")
+        func()
+        print("Decorate after")
+    return inner
 
-@my_decorator
-def say_hello():
-    print("Привіт!")
-say_hello()
+def printer():
+    print("Hello")
+
+decorated_printer = decorate(printer)
+decorated_printer()
