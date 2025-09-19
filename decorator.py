@@ -1,4 +1,4 @@
-def decorate(func: callable): #Функція-декоратор
+def decorate(func): #Функція-декоратор
     def inner():
         print("Decorate before")
         func()
