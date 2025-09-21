@@ -6,19 +6,18 @@
 '''
 from typing import Callable
 
-def send_secure_information(user: dict) -> None:
-    print(f"{user['name']}, site's secure code is 'SecUR43Esit78Eco90DE'")
-
 
 def admin_required(func: Callable) -> None:
-    # write your code here
-    pass
+    def inner(dic: dict):
+        if dic['is_admin']:
+            func(dic)
+        else:
+            print("You are not allowed to see this information!")
+    return inner
 
-
-#Приклад:
 @admin_required
 def send_secure_information(user: dict) -> None:
-        print(f"{user['name']}, site's secure code is 'SecUR43Esit78Eco90DE'")
+    print(f"{user['name']}, site's secure code is 'SecUR43Esit78Eco90DE'")
 
 send_secure_information({'name': 'Administrator', 'is_admin': True})
 # Administrator, site's secure code is 'SecUR43Esit78Eco90DE'
