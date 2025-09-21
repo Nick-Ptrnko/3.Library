@@ -4,14 +4,6 @@
 тільки тих користувачів, у кого is_admin = True, і тільки для таких користувачів викликає функцію, яку він декорує.
 Зверни увагу: поле is_admin може бути не тільки типу bool.
 Приклад:
-
-@only_admin
-def create_permissions(users: list) -> None:
-    for user in users:
-        print(f'Creating permissions for {user["username"]}')
-
-
-
 create_permissions(users)
 # Creating permissions for admin
 # Creating permissions for moderator_a11
@@ -25,15 +17,12 @@ users = [
      {'username': 'admin_2nd', 'is_admin': True},
 ]
 
+'''def only_admin(func):
+    def wrapper(lst: list):
+'''
+
 def create_permissions(users: list) -> None:
     for user in users:
         print(f'Creating permissions for {user["username"]}')
-
-
-'''def only_admin(func):
-    def wrapper(lst: list):
-        for dic in lst:
-            if dic["is_admin"]:
-                func()'''
 
 create_permissions(users)
