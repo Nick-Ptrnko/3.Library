@@ -17,10 +17,16 @@ users = [
      {'username': 'admin_2nd', 'is_admin': True},
 ]
 
-'''def only_admin(func):
+def only_admin(func):
     def wrapper(lst: list):
-'''
+        lst2 = []
+        for user in lst:
+            if user.get("is_admin") is True:
+                lst2.append(user)
+        func(lst2)
+    return wrapper
 
+@only_admin
 def create_permissions(users: list) -> None:
     for user in users:
         print(f'Creating permissions for {user["username"]}')
