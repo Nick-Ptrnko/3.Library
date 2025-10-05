@@ -12,8 +12,8 @@ laptop = fabric_of_device("ThinkPad")
 
 phone()
 phone()
+laptop()
 phone()
 phone()
-phone()
-
+laptop()
 
