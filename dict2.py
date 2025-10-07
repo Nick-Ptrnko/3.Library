@@ -5,3 +5,4 @@ my_dict["specialization"] = "Computer Science"
 print(my_dict)
 del my_dict["specialization"]
 print(my_dict)
+# Чи залишати цей файл?
