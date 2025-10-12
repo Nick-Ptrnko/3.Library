@@ -3,10 +3,7 @@
 a властивість self.partner спочатку None.
 Створи функцію pair_robots, яка приймає список з двох імен, створює для кожного екземпляр класу Robot та
 додає до кожного властивість partner з посиланням на партнера (інший об'єкт). Функція повертає кортеж з роботами.
-robots = [
-  'Alex',
-  'Tom'
-]
+
 
 new_robots = pair_robots(robots)
 
@@ -21,5 +18,20 @@ class Robot:
         self.partner = None
 
 def pair_robots(robots: list) -> tuple:
-    for robot in robots:
-        robot = Robot(robot.name)
+    robot1 = Robot(robots[0])
+    robot2 = Robot(robots[1])
+    robot1.partner = robot2
+    robot2.partner = robot1
+    return robot1, robot2
+
+robots = [
+  'Alex',
+  'Tom'
+]
+new_robots = pair_robots(robots)
+
+print(new_robots[0].name == 'Alex')# True
+all([isinstance(robot, Robot) for robot in new_robots]) # True
+print(new_robots[0].partner is new_robots[1]) # True
+print(new_robots[1].partner is new_robots[0]) # True
+print([isinstance(robot, Robot) for robot in new_robots])

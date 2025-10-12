@@ -17,3 +17,4 @@ user2.age = 789
 
 print(user.age)
 print(type(user2))
+print(user2)
