@@ -1,0 +1,5 @@
+fruits_tuple = ('melon', 'strawberry', 'peach')
+fruits_iter = iter(fruits_tuple)
+print(next(fruits_iter))
+print(next(fruits_iter))
+print(next(fruits_iter))
