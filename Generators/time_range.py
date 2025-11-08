@@ -27,13 +27,13 @@ t_range_list == [
 def time_range(time_start: tuple, time_end: tuple) -> tuple:
     hours, minutes, seconds = time_start
     yield hours, minutes, seconds
-    if seconds >= 60:
+    if seconds >= 59:
         seconds = 0
         minutes += 1
-    elif minutes >= 60:
+    elif minutes >= 59:
         minutes = 0
         hours += 1
-    elif hours >= 24:
+    elif hours >= 23:
         hours = 0
     seconds += 1
     yield hours, minutes, seconds
