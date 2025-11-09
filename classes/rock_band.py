@@ -31,15 +31,15 @@ print(united.name, united.members) # "First Second United" ["Ivan", "Sergey", "M
 '''
 
 class RockBand:
-    def __init__(self, name, members):
+    def __init__(self, name: str, members: list) -> None:
         self.name = name
         self.members = members
-    def add_new_member(self, new_member: str):
+    def add_new_member(self, new_member: str) -> None:
         if new_member in self.members:
             print(f"{new_member} is already in the band!")
         else:
             self.members.append(new_member)
-    def __add__(self, other):
+    def __add__(self, other: 'RockBand') -> 'RockBand':
         united_group = set(self.members + other.members)
         return RockBand(f"{self.name} {other.name} United", list(united_group))
 the_beatles = RockBand(
