@@ -26,11 +26,8 @@ t_range_list == [
 
 def time_range(time_start: tuple, time_end: tuple) -> tuple:
     hours, minutes, seconds = time_start
-    hours_e, minutes_e, seconds_e = time_end
     current_time = hours, minutes, seconds
-    end_time_correct = hours_e, minutes_e, (seconds_e - 1)
-    while current_time != end_time_correct:
-        current_time = hours, minutes, seconds
+    while current_time != time_end:
         yield current_time
         seconds += 1
         if hours == 23 and minutes == 59 and seconds == 60:
@@ -43,10 +40,13 @@ def time_range(time_start: tuple, time_end: tuple) -> tuple:
             seconds = 0
         elif seconds == 60:
             minutes += 1
+            seconds = 0
+        current_time = hours, minutes, seconds
 
-
-t_range = time_range(time_start=(10, 0, 0),
-                     time_end=(10, 0, 3))
+t_range = time_range(time_start=(23, 59, 57),
+                     time_end=(0, 0, 3))
+print(next(t_range))
+print(next(t_range))
 print(next(t_range))
 print(next(t_range))
 print(next(t_range))
