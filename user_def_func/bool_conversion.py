@@ -64,3 +64,20 @@ def from_str(value: str) -> bool:
         raise ValueError
 
 def make_bool(value: int) -> bool:
+    try:
+        return from_int(value)
+    except TypeError:
+        try:
+            return from_str(value)
+        except TypeError:
+            raise BoolConversionError(f"Cannot convert to the bool {type(value)} type.")
+        except ValueError:
+            raise BoolConversionError(f"Cannot convert to the bool {value} value.")
+    except ValueError:
+        raise BoolConversionError(f"Cannot convert to the bool {value} value.")
+
+
+
+
+bool_value = make_bool({True})
+# BoolConversionError: Cannot convert to the bool <class 'set'> type
