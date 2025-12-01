@@ -37,39 +37,34 @@ check_station_devices([
 ])
 # Warning! Polar crane has a slow response of 52 ms. Pay attention!
 # Alarm! Reactor shaft has a very slow response of 81 ms. Needs to be repaired!
-# Nuclear power station is in danger! Pressure compensator has a dangerously slow response of 149 ms. We are in serious trouble!
+# Nuclear power station is in danger! Pressure compensator has a dangerously slow response of 149 ms.
+We are in serious trouble!
 
 """
 class SlowResponse(Exception):
 
-    def __init__(self, name: str, response: int, message=None) -> None:
+    def __init__(self, name: str, response: int, message: str = None) -> None:
         self.name = name
         self.response = response
         if message is None:
-            message = f"Warning! {self.name} has a slow response of {self.response} ms."
+            message = f"Warning! {name} has a slow response of {response} ms."
         super().__init__(message)
 
-#raise SlowResponse(name="Pressure compensator", response=65)
+
 class ExtraSlowResponse(SlowResponse):
 
-    def __init__(self, name: str, response: int, message=None) -> None:
-        self.name = name
-        self.response = response
+    def __init__(self, name: str, response: int, message: str = None) -> None:
         if message is None:
-            message = f"Alarm! {self.name} has a very slow response of {self.response} ms."
+            message = f"Alarm! {name} has a very slow response of {response} ms."
         super().__init__(name, response, message)
 
-#raise ExtraSlowResponse(name="Pressure compensator", response=87)
+
 class DangerouslySlowResponse(ExtraSlowResponse):
 
     def __init__(self, name: str, response: int) -> None:
-        self.name = name
-        self.response = response
-        danger_message = f"Nuclear power station is in danger! {self.name} has a dangerously slow response of {self.response} ms."
-        super().__init__(name, response, message=danger_message)
+        message = f"Nuclear power station is in danger! {name} has a dangerously slow response of {response} ms."
+        super().__init__(name, response, message)
 
-
-#raise DangerouslySlowResponse(name="Pressure compensator", response=190)
 
 def check_device_response(device: dict) -> None:
     if 51 <= device["response"] <= 75:
@@ -79,4 +74,38 @@ def check_device_response(device: dict) -> None:
     elif device["response"] > 100:
         raise DangerouslySlowResponse(name=device["name"], response=device["response"])
 
-check_device_response(device={"name": "Polar crane", "response": 120})
+
+def check_station_devices(devices: list) -> None:
+    has_errors = False
+    for device in devices:
+        try:
+            check_device_response(device=device)
+        except DangerouslySlowResponse as e:
+            print(e, "We are in serious trouble!")
+            has_errors = True
+        except ExtraSlowResponse as e:
+            print(e, "Needs to be repaired!")
+            has_errors = True
+        except SlowResponse as e:
+            print(e, "Pay attention!")
+            has_errors = True
+    if has_errors:
+        pass
+    else:
+        print("Responses of all devices does not exceed the norm.")
+
+
+check_station_devices([
+  {"name": "Polar crane", "response": 52},
+  {"name": "Reactor shaft", "response": 81},
+  {"name": "Pressure compensator", "response": 149},
+  {"name": "Steam generator", "response": 40},
+])
+
+check_station_devices([
+  {"name": "Reactor shaft", "response": 40},
+  {"name": "Polar crane", "response": 25},
+  {"name": "Steam generator", "response": 11},
+  {"name": "Pressure compensator", "response": 50},
+])
+# Responses of all devices does not exceed the norm.
